@@ -1,0 +1,22 @@
+{
+    "name": "warden/warden",
+    "description": "An implementation of the Force.com govenor limits for PHP Frameworks",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dan Cox",
+            "email": "danzabian@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Warden\\": "src/",
+            "Warden\\Tests\\": "tests/"
+        }
+    }
+}
