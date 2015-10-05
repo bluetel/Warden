@@ -8,13 +8,20 @@ namespace Warden;
  * @package Warden
  * @author Dan Cox
  */
-class WardenEvents
+final class WardenEvents
 {
     /**
-     * The event name for collector start
+     * The event name for when warden starts
      *
      * @var String
      */
-    public static $COLLECTOR_START = 'collector.start';
+    const WARDEN_START = 'warden.start';
+
+    /**
+     * The event name for when warden ends
+     *
+     * @var String
+     */
+    const WARDEN_END = 'warden.end';
 
 } // END class WardenEvents

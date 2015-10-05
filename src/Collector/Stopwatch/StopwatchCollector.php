@@ -2,6 +2,13 @@
 
 namespace Warden\Collector\Stopwatch;
 
+use Warden\WardenEvents;
+use Warden\Collector\CollectorInterface;
+use Warden\Collector\CollectorParamBag;
+use Warden\Events\StartEvent;
+use Warden\Events\StopEvent;
+use Symfony\Component\Stopwatch\Stopwatch;
+
 /**
  * The stop watch collector returns memory and time information
  *
@@ -15,9 +22,27 @@ class StopwatchCollector implements CollectorInterface
     /**
      * Instance of the stop watch class
      *
-     * @var \Symfony\Component\StopWatch\StopWatch
+     * @var \Symfony\Component\Stopwatch\Stopwatch
      */
     protected $stopwatch;
+
+    /**
+     * The finished stop watch event
+     *
+     * @var \Symfony\Component\Stopwatch\StopwatchEvent
+     */
+    protected $event;
+
+    /**
+     * Set up class dependencies
+     *
+     * @param \Symfony\Component\StopWatch\StopWatch $stopwatch
+     * @author Dan Cox
+     */
+    public function __construct($stopwatch = NULL)
+    {
+        $this->stopwatch = (!is_null($stopwatch) ? $stopwatch : new StopWatch);
+    }
 
     /**
      * Returns an array with data and data types
@@ -34,17 +59,6 @@ class StopwatchCollector implements CollectorInterface
     }
 
     /**
-     * Collects information via the stopwatch component
-     *
-     * @return void
-     * @author Dan Cox
-     */
-    public function collect()
-    {
-
-    }
-
-    /**
      * Registers this collector on the event dispatcher
      *
      * @param \Symfony\Component\EventDispatcher\EventDispatcher
@@ -53,16 +67,17 @@ class StopwatchCollector implements CollectorInterface
      */
     public function register($eventDispatcher)
     {
-    }
+        // Add the listeners to start and stop events
+        $eventDispatcher->addListener(WardenEvents::WARDEN_START, function(StartEvent $event) {
+            $this->stopwatch->start('request');
+        });
 
-    /**
-     * Detatches the event and collects nessecary data
-     *
-     * @return void
-     * @author Dan Cox
-     */
-    public function detatch()
-    {
+        $eventDispatcher->addListener(WardenEvents::WARDEN_END, function(StopEvent $event) {
+            $sw = $this->stopwatch->stop('request');
+
+            $event->params->setValue('request_time', $sw->getDuration());
+            $event->params->setValue('request_memory', $sw->getMemory());
+        });
     }
 
 } // END class StopwatchCollector implements CollectorInterface
