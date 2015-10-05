@@ -10,7 +10,8 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "symfony/stopwatch": "2.7.x"
+        "symfony/stopwatch": "2.7.x",
+        "symfony/event-dispatcher": "2.7.x"
     },
     "require-dev": {
         "satooshi/php-coveralls": "dev-master",
