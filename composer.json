@@ -10,8 +10,12 @@
     ],
     "minimum-stability": "dev",
     "require": {
+        "symfony/stopwatch": "2.7.x",
+        "symfony/event-dispatcher": "2.7.x"
     },
     "require-dev": {
+        "satooshi/php-coveralls": "dev-master",
+        "squizlabs/php_codesniffer": "dev-master"
     },
     "autoload": {
         "psr-4": {
