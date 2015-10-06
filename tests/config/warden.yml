@@ -1,0 +1,5 @@
+warden:
+    collectors:
+        stopwatch: Warden\Collector\Stopwatch\StopwatchCollector
+    limits:
+        request_time: 3

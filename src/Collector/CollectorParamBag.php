@@ -19,6 +19,18 @@ class CollectorParamBag
     protected $data;
 
     /**
+     * An array of default values that a collector should have
+     *
+     * @var Array
+     */
+    protected $defaults = [
+        'type'          => 'integer',
+        'default'       => 0,
+        'value'         => null,
+        'limit'         => 0
+    ];
+
+    /**
      * Set up class
      *
      * @author Dan Cox
@@ -38,7 +50,7 @@ class CollectorParamBag
      */
     public function add($key, array $description)
     {
-        $this->data[$key] = $description;
+        $this->data[$key] = array_merge($this->defaults, $description);
         return $this;
     }
 

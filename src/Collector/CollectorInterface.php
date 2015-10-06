@@ -26,5 +26,4 @@ interface CollectorInterface
      * @author Dan Cox
      */
     public function describe();
-
 }
