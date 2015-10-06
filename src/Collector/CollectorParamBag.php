@@ -131,6 +131,17 @@ class CollectorParamBag
     }
 
     /**
+     * Returns the data array
+     *
+     * @return Array
+     * @author Dan Cox
+     */
+    public function all()
+    {
+        return $this->data;
+    }
+
+    /**
      * Sets the collector value
      *
      * @param String $key

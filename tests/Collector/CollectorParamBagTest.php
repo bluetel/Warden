@@ -37,6 +37,7 @@ class CollectorParamBagTest extends \PHPUnit_Framework_TestCase
         $parambag->setValue('request_time', 10);
 
         $this->assertEquals(10, $parambag->getValue('request_time'));
+        $this->assertEquals(1, count($parambag->all()));
     }
 
 } // END class CollectorParamBagTest extends \PHPUnit_Framework_TestCase

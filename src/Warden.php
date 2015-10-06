@@ -3,6 +3,7 @@
 namespace Warden;
 
 use Warden\WardenEvents;
+use Warden\Analyser;
 use Warden\Events\StartEvent;
 use Warden\Events\StopEvent;
 use Warden\Collector\CollectorInterface;
@@ -99,6 +100,24 @@ class Warden
             $this->registerCollectors();
             $this->initEvents();
         }
+
+        if (is_array($this->settings['warden']['limits'])) {
+           $this->updateLimits($this->settings['warden']['limits']); 
+        }
+    }
+
+    /**
+     * Updates limits
+     *
+     * @param Array $limits
+     * @return void
+     * @author Dan Cox
+     */
+    public function updateLimits(array $limits)
+    {
+        foreach ($limits as $key => $limit) {
+            $this->params->setLimit($key, $limit);
+        }
     }
 
     /**
@@ -178,6 +197,21 @@ class Warden
     {
         $this->stop = $this->dispatch->dispatch(WardenEvents::WARDEN_END, $this->stop);
         $this->params = $this->stop->params;
+
+        // Send the results to the analyser
+        $this->analyseResults();
+    }
+
+    /**
+     * Checks the results straight after the stop event is called
+     *
+     * @return void
+     * @author Dan Cox
+     */
+    public function analyseResults()
+    {
+        $analyser = new Analyser($this->params);
+        $analyser->checkResults();
     }
 
     /**

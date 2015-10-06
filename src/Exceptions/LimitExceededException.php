@@ -49,7 +49,7 @@ class LimitExceededException extends \Exception
         $this->name = $name;
 
         parent::__construct(
-            "Warden limit exceeded, The $name limit recorded $actual, the limit is $limit",
+            "Warden Limit: The $name collector node recorded $actual, the limit is $limit.",
             $code,
             $previous
         );
