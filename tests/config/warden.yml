@@ -2,4 +2,4 @@ warden:
     collectors:
         stopwatch: Warden\Collector\Stopwatch\StopwatchCollector
     limits:
-        request_time: 3
+        request_time: 1024

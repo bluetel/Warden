@@ -94,7 +94,10 @@ class Warden
         $this->settings = $this->parser->parse(file_get_contents($file));
 
         if (is_array($this->settings['warden']['collectors'])) {
+
             $this->createCollectors($this->settings['warden']['collectors']);
+            $this->registerCollectors();
+            $this->initEvents();
         }
     }
 
@@ -125,6 +128,19 @@ class Warden
         foreach ($descriptions as $key => $description) {
 
             $this->params->add($key, $description);
+        }
+    }
+
+    /**
+     * Registers the array of collectors
+     *
+     * @return void
+     * @author Dan Cox
+     */
+    public function registerCollectors()
+    {
+        foreach ($this->collectors as $collector) {
+            $collector->register($this->dispatch);
         }
     }
 
