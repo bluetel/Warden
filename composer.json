@@ -12,7 +12,6 @@
     "require": {
         "symfony/stopwatch": "2.7.x",
         "symfony/yaml": "2.7.x",
-        "symfony/filesystem": "2.7.x",
         "symfony/event-dispatcher": "2.7.x"
     },
     "require-dev": {
