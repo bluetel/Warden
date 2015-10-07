@@ -14,6 +14,7 @@ interface CollectorInterface
     /**
      * Registers an action to perform upon starting warden
      *
+     * @param \Symfony\Component\EventsDispatcher\EventsDispatcher $eventDispatcher
      * @return void
      * @author Dan Cox
      */
@@ -26,5 +27,4 @@ interface CollectorInterface
      * @author Dan Cox
      */
     public function describe();
-
 }

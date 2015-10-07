@@ -1,0 +1,6 @@
+warden:
+    collectors:
+        stopwatch: Warden\Collector\Stopwatch\StopwatchCollector
+    limits:
+        request_time: 1
+        request_memory: 20000000

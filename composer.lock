@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "038454d98deca3651e898faa04a191ea",
-    "content-hash": "213007223e94848a02a3eb1a18d31124",
+    "hash": "433af75f4faf0d5b753c1004256dc7bd",
+    "content-hash": "cedb56b2d347cda0438b378a7a86b645",
     "packages": [
         {
             "name": "symfony/event-dispatcher",
@@ -66,6 +66,55 @@
             "time": "2015-09-29 12:06:14"
         },
         {
+            "name": "symfony/filesystem",
+            "version": "2.7.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/filesystem.git",
+                "reference": "a59a4700751c1df145010212be2437f260cd0ae6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/a59a4700751c1df145010212be2437f260cd0ae6",
+                "reference": "a59a4700751c1df145010212be2437f260cd0ae6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Filesystem\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Filesystem Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-09-29 12:06:14"
+        },
+        {
             "name": "symfony/stopwatch",
             "version": "2.7.x-dev",
             "source": {
@@ -113,6 +162,55 @@
             "description": "Symfony Stopwatch Component",
             "homepage": "https://symfony.com",
             "time": "2015-09-22 13:49:29"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "2.7.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "29c3697c1a128e13331964c11e43cfea2dd4d949"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/29c3697c1a128e13331964c11e43cfea2dd4d949",
+                "reference": "29c3697c1a128e13331964c11e43cfea2dd4d949",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Yaml Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-10-02 12:36:41"
         }
     ],
     "packages-dev": [
@@ -330,12 +428,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "bd21c5e97d77e3fb7b78fa9aaeaab19e023eb708"
+                "reference": "34961698c3176315747485838d625cd1f2db7fb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/bd21c5e97d77e3fb7b78fa9aaeaab19e023eb708",
-                "reference": "bd21c5e97d77e3fb7b78fa9aaeaab19e023eb708",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/34961698c3176315747485838d625cd1f2db7fb6",
+                "reference": "34961698c3176315747485838d625cd1f2db7fb6",
                 "shasum": ""
             },
             "require": {
@@ -396,33 +494,33 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2015-09-24 23:12:15"
+            "time": "2015-10-06 05:26:28"
         },
         {
             "name": "symfony/config",
-            "version": "dev-master",
+            "version": "2.8.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "07a94178b0d78aa70dc5452cc83e454047993835"
+                "reference": "91f483a2de7b6c0552f42aa1d4fd1c066bc7ccba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/07a94178b0d78aa70dc5452cc83e454047993835",
-                "reference": "07a94178b0d78aa70dc5452cc83e454047993835",
+                "url": "https://api.github.com/repos/symfony/config/zipball/91f483a2de7b6c0552f42aa1d4fd1c066bc7ccba",
+                "reference": "91f483a2de7b6c0552f42aa1d4fd1c066bc7ccba",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9",
-                "symfony/filesystem": "~2.8|~3.0"
+                "php": ">=5.3.9",
+                "symfony/filesystem": "~2.3|~3.0.0"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "~2.8|~3.0"
+                "symfony/phpunit-bridge": "~2.7|~3.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
@@ -446,7 +544,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2015-09-30 12:30:29"
+            "time": "2015-09-27 10:15:37"
         },
         {
             "name": "symfony/console",
@@ -454,12 +552,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "6f40fe98676b7eed54a3d0bc2770aaaacdad2b1c"
+                "reference": "30482c79a3088db146e317051ab885bd2da78a9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/6f40fe98676b7eed54a3d0bc2770aaaacdad2b1c",
-                "reference": "6f40fe98676b7eed54a3d0bc2770aaaacdad2b1c",
+                "url": "https://api.github.com/repos/symfony/console/zipball/30482c79a3088db146e317051ab885bd2da78a9d",
+                "reference": "30482c79a3088db146e317051ab885bd2da78a9d",
                 "shasum": ""
             },
             "require": {
@@ -503,105 +601,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2015-10-02 14:58:35"
-        },
-        {
-            "name": "symfony/filesystem",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/filesystem.git",
-                "reference": "5b3b4801388d04a9e6d33c72dfb87bf9dde688dd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/5b3b4801388d04a9e6d33c72dfb87bf9dde688dd",
-                "reference": "5b3b4801388d04a9e6d33c72dfb87bf9dde688dd",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.8|~3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Filesystem\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Filesystem Component",
-            "homepage": "https://symfony.com",
-            "time": "2015-09-29 14:08:28"
-        },
-        {
-            "name": "symfony/yaml",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/yaml.git",
-                "reference": "6f9ac2eb9dca0d6a67ca06e6424b700a4353c2f9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/6f9ac2eb9dca0d6a67ca06e6424b700a4353c2f9",
-                "reference": "6f9ac2eb9dca0d6a67ca06e6424b700a4353c2f9",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.8|~3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Yaml\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Yaml Component",
-            "homepage": "https://symfony.com",
-            "time": "2015-10-02 17:05:43"
+            "time": "2015-10-05 16:52:37"
         }
     ],
     "aliases": [],

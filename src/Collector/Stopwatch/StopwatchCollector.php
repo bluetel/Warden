@@ -27,13 +27,6 @@ class StopwatchCollector implements CollectorInterface
     protected $stopwatch;
 
     /**
-     * The finished stop watch event
-     *
-     * @var \Symfony\Component\Stopwatch\StopwatchEvent
-     */
-    protected $event;
-
-    /**
      * Set up class dependencies
      *
      * @param \Symfony\Component\StopWatch\StopWatch $stopwatch
