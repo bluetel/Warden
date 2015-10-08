@@ -4,6 +4,7 @@ namespace Warden;
 
 use Warden\Collector\CollectorParamBag;
 use Warden\Exceptions;
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 /**
  * The analyser class checks the collectors data along with the limits
@@ -21,13 +22,22 @@ class Analyser
     protected $params;
 
     /**
+     * An instance of the symfony expression language class
+     *
+     * @var \Symfony\Component\ExpressionLanguage\ExpressionLanguage
+     */
+    protected $expression;
+
+    /**
      * Set up class dependencies
      *
      * @param \Warden\Collector\CollectorParamBag $params
+     * @param \Symfony\Component\ExpressionLanguage\ExpressionLanguage $expression
      */
-    public function __construct(CollectorParamBag $params)
+    public function __construct(CollectorParamBag $params, ExpressionLanguage $expression = NULL)
     {
         $this->params = $params;
+        $this->expression = (!is_null($expression) ? $expression : new ExpressionLanguage);
     }
 
     /**
@@ -41,12 +51,15 @@ class Analyser
 
         foreach ($data as $key => $value) {
 
-            /**
-             * This will need to use the appropriate method to
-             * analyse the values depending on their type
-             * for now, we assume they are integers
-             */
-            if ($value['value'] > $value['limit']) {
+            $failed = $this->expression->evaluate(
+                $value['expression'],
+                array(
+                    'value'     => $value['value'],
+                    'limit'     => $value['limit']
+                )
+            );
+
+            if ($failed) {
 
                 // We throw the exception because the limit has been breached.
                 throw new Exceptions\LimitExceededException(

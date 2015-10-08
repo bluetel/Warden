@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4b264356e9094605aa8770ea628d7d3a",
-    "content-hash": "42ff8777c4a8d0b2cb802a550628cb78",
+    "hash": "6f7aa89b3ffcdb102ace61024b3ce4d4",
+    "content-hash": "a7d9eea538cd079cc65f3cb4a41afdb6",
     "packages": [
         {
             "name": "symfony/event-dispatcher",
@@ -64,6 +64,55 @@
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
             "time": "2015-09-29 12:06:14"
+        },
+        {
+            "name": "symfony/expression-language",
+            "version": "2.7.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/expression-language.git",
+                "reference": "27eda893f80fde6f540c7f32d5f8344b20da0a98"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/expression-language/zipball/27eda893f80fde6f540c7f32d5f8344b20da0a98",
+                "reference": "27eda893f80fde6f540c7f32d5f8344b20da0a98",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\ExpressionLanguage\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony ExpressionLanguage Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-09-26 12:15:17"
         },
         {
             "name": "symfony/stopwatch",
