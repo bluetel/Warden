@@ -16,7 +16,6 @@ class CollectorParamBagTest extends \PHPUnit_Framework_TestCase
      * And subsequently allows me to set and get
      *
      * @return void
-     * @author Dan Cox
      */
     public function test_can_add_and_get_set()
     {

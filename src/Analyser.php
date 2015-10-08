@@ -24,7 +24,6 @@ class Analyser
      * Set up class dependencies
      *
      * @param \Warden\Collector\CollectorParamBag $params
-     * @author Dan Cox
      */
     public function __construct(CollectorParamBag $params)
     {
@@ -35,7 +34,6 @@ class Analyser
      * Checks the limits against the actual recorded values and determines whether they have exceeded
      *
      * @return void
-     * @author Dan Cox
      */
     public function checkResults()
     {

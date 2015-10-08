@@ -72,7 +72,6 @@ class Warden
      * Set up class dependencies
      *
      * @param \Symfony\Component\EventDispatcher\EventDispatcher $dispatcher
-     * @author Dan Cox
      */
     public function __construct($dispatcher = NULL)
     {
@@ -88,7 +87,6 @@ class Warden
      *
      * @param String $file
      * @return void
-     * @author Dan Cox
      */
     public function setUp($file)
     {
@@ -111,7 +109,6 @@ class Warden
      *
      * @param Array $limits
      * @return void
-     * @author Dan Cox
      */
     public function updateLimits(array $limits)
     {
@@ -126,7 +123,6 @@ class Warden
      *
      * @param Array $collectors
      * @return void
-     * @author Dan Cox
      */
     public function createCollectors(array $collectors)
     {
@@ -154,7 +150,6 @@ class Warden
      * Registers the array of collectors
      *
      * @return void
-     * @author Dan Cox
      */
     public function registerCollectors()
     {
@@ -167,7 +162,6 @@ class Warden
      * Creates the events needed to run warden
      *
      * @return void
-     * @author Dan Cox
      */
     public function initEvents()
     {
@@ -179,7 +173,6 @@ class Warden
      * Triggers the start event to begin collecting information
      *
      * @return void
-     * @author Dan Cox
      */
     public function start()
     {
@@ -191,7 +184,6 @@ class Warden
      * collected data
      *
      * @return void
-     * @author Dan Cox
      */
     public function stop()
     {
@@ -206,7 +198,6 @@ class Warden
      * Checks the results straight after the stop event is called
      *
      * @return void
-     * @author Dan Cox
      */
     public function analyseResults()
     {
@@ -218,7 +209,6 @@ class Warden
      * Returns the parambag instance
      *
      * @return \Warden\Collector\CollectorParamBag
-     * @author Dan Cox
      */
     public function getParams()
     {

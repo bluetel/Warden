@@ -48,7 +48,6 @@ class StopwatchCollectorTest extends \PHPUnit_Framework_TestCase
      * Set up test env
      *
      * @return void
-     * @author Dan Cox
      */
     public function setUp()
     {
@@ -77,7 +76,6 @@ class StopwatchCollectorTest extends \PHPUnit_Framework_TestCase
      * Test that it actually collects data
      *
      * @return void
-     * @author Dan Cox
      */
     public function test_it_collects_data()
     {

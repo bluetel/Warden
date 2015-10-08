@@ -33,7 +33,6 @@ class CollectorParamBag
     /**
      * Set up class
      *
-     * @author Dan Cox
      */
     public function __construct(array $data = array())
     {
@@ -46,7 +45,6 @@ class CollectorParamBag
      * @param String $key
      * @param Array $description
      * @return CollectorParamBag
-     * @author Dan Cox
      */
     public function add($key, array $description)
     {
@@ -59,7 +57,6 @@ class CollectorParamBag
      *
      * @param String $key
      * @return String
-     * @author Dan Cox
      */
     public function getType($key)
     {
@@ -71,7 +68,6 @@ class CollectorParamBag
      *
      * @param String $key
      * @return Mixed
-     * @author Dan Cox
      */
     public function getDefault($key)
     {
@@ -83,7 +79,6 @@ class CollectorParamBag
      *
      * @param String $key
      * @return Mixed
-     * @author Dan Cox
      */
     public function getLimit($key)
     {
@@ -96,7 +91,6 @@ class CollectorParamBag
      * @param String $key
      * @param Mixed $value
      * @return CollectorParamBag
-     * @author Dan Cox
      */
     public function setLimit($key, $value)
     {
@@ -109,7 +103,6 @@ class CollectorParamBag
      *
      * @param String $key
      * @return Mixed
-     * @author Dan Cox
      */
     public function getValue($key)
     {
@@ -122,7 +115,6 @@ class CollectorParamBag
      * @param String $key
      * @param Mixed $value
      * @return CollectorParamBag
-     * @author Dan Cox
      */
     public function setValue($key, $value)
     {
@@ -134,7 +126,6 @@ class CollectorParamBag
      * Returns the data array
      *
      * @return Array
-     * @author Dan Cox
      */
     public function all()
     {
@@ -147,7 +138,6 @@ class CollectorParamBag
      * @param String $key
      * @param Mixed $value
      * @return CollectorParamBag
-     * @author Dan Cox
      */
     public function __set($key, $value)
     {
@@ -160,7 +150,6 @@ class CollectorParamBag
      *
      * @param String $key
      * @return Mixed
-     * @author Dan Cox
      */
     public function __get($key)
     {
