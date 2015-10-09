@@ -2,6 +2,8 @@
 
 namespace Warden\Collector;
 
+use Warden\Exceptions;
+
 /**
  * The parameter bag for collectors
  *

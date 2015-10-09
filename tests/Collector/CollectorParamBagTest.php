@@ -26,6 +26,7 @@ class CollectorParamBagTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(100, $parambag->getDefault('request_time'));
         $this->assertEquals(5, $parambag->getLimit('request_time'));
         $this->assertEquals('', $parambag->request_time);
+        $this->assertEquals('value >= limit', $parambag->getExpression('request_time'));
 
         $parambag->request_time = 500;
         $parambag->setLimit('request_time', 15);
@@ -39,4 +40,17 @@ class CollectorParamBagTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, count($parambag->all()));
     }
 
+    /**
+     * Test that it throws an exception when an invalid node is accessed
+     *
+     * @return void
+     */
+    public function test_it_throws_exception_when_node_isnt_found()
+    {
+        $this->setExpectedException('Warden\Exceptions\InvalidCollectorNodeException');
+
+        $parambag = new CollectorParamBag;
+
+        $parambag->getValue('test');
+    }
 } // END class CollectorParamBagTest extends \PHPUnit_Framework_TestCase
