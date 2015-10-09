@@ -92,28 +92,39 @@ class Warden
     {
         $this->settings = $this->parser->parse(file_get_contents($file));
 
-        if (is_array($this->settings['warden']['collectors'])) {
+        if (array_key_exists('warden', $this->settings)) {
 
-            $this->createCollectors($this->settings['warden']['collectors']);
-            $this->registerCollectors();
-            $this->initEvents();
-        }
+            if (array_key_exists('collectors', $this->settings['warden'])) {
 
-        if (is_array($this->settings['warden']['limits'])) {
-           $this->updateLimits($this->settings['warden']['limits']); 
+                $this->createCollectors($this->settings['warden']['collectors']);
+                $this->registerCollectors();
+                $this->initEvents();
+            }
+
+            if (array_key_exists('settings', $this->settings['warden'])) {
+
+               $this->updateSettings($this->settings['warden']['settings']);
+            }
         }
     }
 
     /**
-     * Updates limits
+     * Updates settings
      *
-     * @param Array $limits
+     * @param Array $settings
      * @return void
      */
-    public function updateLimits(array $limits)
+    public function updateSettings(array $settings)
     {
-        foreach ($limits as $key => $limit) {
-            $this->params->setLimit($key, $limit);
+        foreach ($settings as $key => $setting) {
+
+            if (array_key_exists('limit', $setting)) {
+                $this->params->setLimit($key, $setting['limit']);
+            }
+
+            if (array_key_exists('expression', $setting)) {
+                $this->params->setExpression($key, $setting['expression']);
+            }
         }
     }
 

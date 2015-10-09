@@ -25,6 +25,7 @@ class CollectorParamBag
      */
     protected $defaults = [
         'type'          => 'integer',
+        'expression'    => 'value >= limit',
         'default'       => 0,
         'value'         => null,
         'limit'         => 0
@@ -53,6 +54,22 @@ class CollectorParamBag
     }
 
     /**
+     * Gathers and returns information on a collector node
+     *
+     * @param String $node
+     * @param String $key
+     * @return Mixed
+     */
+    public function nodeInfo($node, $key)
+    {
+        if (!array_key_exists($node, $this->data)) {
+            throw new Exceptions\InvalidCollectorNodeException($node);
+        }
+
+        return $this->data[$node][$key];
+    }
+
+    /**
      * Returns the value type as set in the collector `describe` method
      *
      * @param String $key
@@ -60,7 +77,7 @@ class CollectorParamBag
      */
     public function getType($key)
     {
-        return $this->data[$key]['type'];
+        return $this->nodeInfo($key, 'type');
     }
 
     /**
@@ -71,7 +88,7 @@ class CollectorParamBag
      */
     public function getDefault($key)
     {
-        return $this->data[$key]['default'];
+        return $this->nodeInfo($key, 'default');
     }
 
     /**
@@ -82,8 +99,31 @@ class CollectorParamBag
      */
     public function getLimit($key)
     {
-        return $this->data[$key]['limit'];
+        return $this->nodeInfo($key, 'limit');
     }
+
+    /**
+     * Returns the expression for the given key
+     *
+     * @param String $key
+     * @return String
+     */
+    public function getExpression($key)
+    {
+        return $this->nodeInfo($key, 'expression');
+    }
+
+    /**
+     * Returns the value for the specified key
+     *
+     * @param String $key
+     * @return Mixed
+     */
+    public function getValue($key)
+    {
+        return $this->nodeInfo($key, 'value');
+    }
+
 
     /**
      * Sets the limit for the specified key
@@ -99,14 +139,16 @@ class CollectorParamBag
     }
 
     /**
-     * Returns the value for the specified key
+     * Sets the expression value for a node
      *
      * @param String $key
-     * @return Mixed
+     * @param String $value
+     * @return CollectorParamBag
      */
-    public function getValue($key)
+    public function setExpression($key, $value)
     {
-        return $this->data[$key]['value'];
+        $this->data[$key]['expression'] = $value;
+        return $this;
     }
 
     /**

@@ -44,8 +44,8 @@ class StopwatchCollector implements CollectorInterface
     public function describe()
     {
         return array(
-            'request_time'      => ['type' => 'integer', 'expression' => 'value >= limit'],
-            'request_memory'    => ['type' => 'integer', 'expression' => 'value >= limit']
+            'request_time'      => ['type' => 'integer'],
+            'request_memory'    => ['type' => 'integer']
         );
     }
 
