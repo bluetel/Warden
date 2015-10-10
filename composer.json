@@ -12,6 +12,7 @@
     "require": {
         "symfony/stopwatch": "2.7.x",
         "symfony/yaml": "2.7.x",
+        "symfony/expression-language": "2.7.x",
         "symfony/event-dispatcher": "2.7.x"
     },
     "require-dev": {

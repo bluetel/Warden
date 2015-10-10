@@ -16,7 +16,6 @@ interface CollectorInterface
      *
      * @param \Symfony\Component\EventsDispatcher\EventsDispatcher $eventDispatcher
      * @return void
-     * @author Dan Cox
      */
     public function register($eventDispatcher);
 
@@ -24,7 +23,6 @@ interface CollectorInterface
      * Returns an array describing the data and data types this will collect
      *
      * @return Array
-     * @author Dan Cox
      */
     public function describe();
 }

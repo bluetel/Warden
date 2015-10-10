@@ -15,7 +15,6 @@ class WardenTest extends \PHPUnit_Framework_TestCase
      * Test that it can load settings from a YAML file
      *
      * @return void
-     * @author Dan Cox
      */
     public function test_it_loads_settings()
     {
@@ -33,7 +32,6 @@ class WardenTest extends \PHPUnit_Framework_TestCase
      * Test that it registers the specified collectors
      *
      * @return void
-     * @author Dan Cox
      */
     public function test_it_registers_specified_collectors()
     {
@@ -52,7 +50,6 @@ class WardenTest extends \PHPUnit_Framework_TestCase
      * Test that the results get analysed after the stop method is called
      *
      * @return void
-     * @author Dan Cox
      */
     public function test_results_are_analysed()
     {

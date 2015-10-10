@@ -25,7 +25,6 @@ class StopEvent extends Event
      * Set class dependencies
      *
      * @param \Warden\Collector\CollectorParamBag $params
-     * @author Dan Cox
      */
     public function __construct(CollectorParamBag $params)
     {

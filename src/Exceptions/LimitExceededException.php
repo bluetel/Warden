@@ -40,7 +40,6 @@ class LimitExceededException extends \Exception
      * @param String $name
      * @param Integer $code
      * @param Exception $previous
-     * @author Dan Cox
      */
     public function __construct($actual, $limit, $name, $code = 0, \Exception $previous = NULL)
     {
@@ -59,7 +58,6 @@ class LimitExceededException extends \Exception
      * Returns the actual value
      *
      * @return Mixed
-     * @author Dan Cox
      */
     public function getActual()
     {
@@ -70,7 +68,6 @@ class LimitExceededException extends \Exception
      * Returns the limit value
      *
      * @return Mixed
-     * @author Dan Cox
      */
     public function getLimit()
     {
@@ -81,7 +78,6 @@ class LimitExceededException extends \Exception
      * Returns the limit name
      *
      * @return String
-     * @author Dan Cox
      */
     public function getName()
     {

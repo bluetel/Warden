@@ -30,7 +30,6 @@ class StopwatchCollector implements CollectorInterface
      * Set up class dependencies
      *
      * @param \Symfony\Component\StopWatch\StopWatch $stopwatch
-     * @author Dan Cox
      */
     public function __construct($stopwatch = NULL)
     {
@@ -41,13 +40,12 @@ class StopwatchCollector implements CollectorInterface
      * Returns an array with data and data types
      *
      * @return Array
-     * @author Dan Cox
      */
     public function describe()
     {
         return array(
-            'request_time'              => ['type' => 'integer'],
-            'request_memory'            => ['type' => 'integer']
+            'request_time'      => ['type' => 'integer'],
+            'request_memory'    => ['type' => 'integer']
         );
     }
 
@@ -56,7 +54,6 @@ class StopwatchCollector implements CollectorInterface
      *
      * @param \Symfony\Component\EventDispatcher\EventDispatcher
      * @return void
-     * @author Dan Cox
      */
     public function register($eventDispatcher)
     {
