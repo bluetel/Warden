@@ -6,4 +6,4 @@ warden:
             limit: 1
             expression: 'value > limit'
         request_memory:
-            limit: 20000000
+            limit: 2000000000

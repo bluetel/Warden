@@ -255,10 +255,10 @@ class Warden
     public function getDependency($name)
     {
         if (!array_key_exists($name, $this->dependencies)) {
-            // Throw exception
+            throw Exceptions\MissingDependencyException($name);
         }
 
-        return $dependencies[$name];
+        return $this->dependencies[$name];
     }
 
     /**

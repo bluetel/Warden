@@ -65,4 +65,21 @@ class WardenTest extends \PHPUnit_Framework_TestCase
         $warden->stop();
     }
 
+    /**
+     * Test that you can add and retrieve dependencies
+     *
+     * @return void
+     */
+    public function test_add_get_dependency()
+    {
+        $warden = new Warden;
+        $warden->addDependency('test', new StdClass);
+
+        $class = $warden->getDependency('test');
+        $all = $warden->getDependencies();
+
+        $this->assertEquals(new StdClass, $class);
+        $this->assertEquals(['test' => new StdClass], $all);
+    }
+
 } // END class WardenTest extends \PHPUnit_Framework_TestCase
