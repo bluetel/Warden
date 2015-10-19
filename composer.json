@@ -16,8 +16,9 @@
         "symfony/event-dispatcher": "2.7.x"
     },
     "require-dev": {
-        "satooshi/php-coveralls": "dev-master",
-        "squizlabs/php_codesniffer": "dev-master"
+        "doctrine/dbal": "2.5.x",
+        "doctrine/orm": "2.5.x",
+        "satooshi/php-coveralls": "dev-master"
     },
     "autoload": {
         "psr-4": {
