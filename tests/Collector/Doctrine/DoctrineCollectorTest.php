@@ -3,7 +3,6 @@
 use Warden\Collector\Doctrine\DoctrineQueryCollector;
 use Warden\Tests\Collector\Doctrine\Entities\Test;
 use Warden\Collector\CollectorParamBag;
-use Warden\Analyser;
 use Warden\WardenEvents;
 use Warden\Events\StartEvent;
 use Warden\Events\StopEvent;
@@ -74,7 +73,7 @@ class DoctrineCollectorTest extends \PHPUnit_Framework_TestCase
         $this->params = new CollectorParamBag;
 
         $setup = Setup::createAnnotationMetadataConfiguration(
-            [__DIR__ . '/Entities'],
+            [ENTITIES],
             true
         );
 

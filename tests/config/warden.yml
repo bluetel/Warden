@@ -1,9 +1,17 @@
 warden:
     collectors:
-        stopwatch: Warden\Collector\Stopwatch\StopwatchCollector
+        stopwatch:
+            class: Warden\Collector\Stopwatch\StopwatchCollector
+        doctrine:
+            class: Warden\Collector\Doctrine\DoctrineQueryCollector
+            arguments:
+                - 'doctrine_em'
     settings:
         request_time:
             limit: 1
             expression: 'value > limit'
         request_memory:
             limit: 2000000000
+        query_limit:
+            limit: 10
+            expression: 'value >= limit'

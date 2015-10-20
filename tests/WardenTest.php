@@ -1,6 +1,9 @@
 <?php
 
 use Warden\Warden;
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\SchemaTool;
 
 /**
  * Test case for the warden class
@@ -12,16 +15,54 @@ use Warden\Warden;
 class WardenTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * Instance of the doctrine entity manager
+     *
+     * @var \Doctrine\ORM\EntityManager
+     */
+    protected $em;
+
+    /**
+     * An instance of Warden
+     *
+     * @var \Warden\Warden
+     */
+    protected $warden;
+
+    /**
+     * Set up test env
+     *
+     * @return void
+     */
+    public function setUp()
+    {
+        $setup = Setup::createAnnotationMetadataConfiguration(
+            [ENTITIES],
+            true
+        );
+
+        $this->em = EntityManager::create(
+            [
+                'driver'        => 'pdo_mysql',
+                'user'          => 'user',
+                'password'      => '',
+                'dbname'        => 'warden'
+            ],
+            $setup
+        );
+
+        $this->warden = new Warden;
+        $this->warden->addDependency('doctrine_em', $this->em);
+        $this->warden->setup(CONFIG . 'warden.yml');
+    }
+
+    /**
      * Test that it can load settings from a YAML file
      *
      * @return void
      */
     public function test_it_loads_settings()
     {
-        $warden = new Warden;
-        $warden->setup(__DIR__ . '/config/warden.yml');
-
-        $params = $warden->getParams();
+        $params = $this->warden->getParams();
 
         $this->assertEquals('integer', $params->getType('request_time'));
         $this->assertEquals(0, $params->getDefault('request_memory'));
@@ -35,13 +76,10 @@ class WardenTest extends \PHPUnit_Framework_TestCase
      */
     public function test_it_registers_specified_collectors()
     {
-        $warden = new Warden;
-        $warden->setup(__DIR__ . '/config/warden.yml');
+        $this->warden->start();
+        $this->warden->stop();
 
-        $warden->start();
-        $warden->stop();
-
-        $params = $warden->getParams();
+        $params = $this->warden->getParams();
 
         $this->assertNotNull($params->getValue('request_memory'));
     }
@@ -55,14 +93,11 @@ class WardenTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('Warden\Exceptions\LimitExceededException');
 
-        $warden = new Warden;
-        $warden->setup(__DIR__ . '/config/warden.yml');
-
-        $warden->start();
+        $this->warden->start();
 
         sleep(2);
 
-        $warden->stop();
+        $this->warden->stop();
     }
 
     /**
@@ -80,6 +115,28 @@ class WardenTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(new StdClass, $class);
         $this->assertEquals(['test' => new StdClass], $all);
+    }
+
+    /**
+     * Test that it throws an exception when we hit the query limit
+     *
+     * @return void
+     */
+    public function test_it_throws_exception_on_query_limit()
+    {
+        $this->setExpectedException('Warden\Exceptions\LimitExceededException');
+
+        $this->warden->start();
+
+        // Le wild query in a loop appears
+        for ($i = 0; $i < 10; $i++) {
+
+            $result = $this->em
+                           ->getRepository('Warden\Tests\Collector\Doctrine\Entities\Test')
+                           ->findBy([], [], null, null);
+        }
+
+        $this->warden->stop();
     }
 
 } // END class WardenTest extends \PHPUnit_Framework_TestCase
