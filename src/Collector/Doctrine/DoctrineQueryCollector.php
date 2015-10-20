@@ -77,7 +77,7 @@ class DoctrineQueryCollector implements CollectorInterface
         $this->stack = new DebugStack;
 
         $eventDispatcher->addListener(WardenEvents::WARDEN_START, function (StartEvent $event) {
-            $this->em->getConfiguration()->setSQLLogger($this->stack);
+            $this->registerStack();
         });
 
         $eventDispatcher->addListener(WardenEvents::WARDEN_END, function(StopEvent $event) {
