@@ -118,6 +118,19 @@ class WardenTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test that trying to access a missing dependency throws an exception
+     *
+     * @return void
+     */
+    public function test_it_throws_exception_on_missing_dependency()
+    {
+        $this->setExpectedException('Warden\Exceptions\MissingDependencyException');
+
+        $warden = new Warden;
+        $warden->getDependency('Fake');
+    }
+
+    /**
      * Test that it throws an exception when we hit the query limit
      *
      * @return void
