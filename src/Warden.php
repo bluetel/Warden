@@ -8,6 +8,7 @@ use Warden\Events\StartEvent;
 use Warden\Events\StopEvent;
 use Warden\Collector\CollectorInterface;
 use Warden\Collector\CollectorParamBag;
+use Warden\Exceptions;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Yaml\Parser;
 
@@ -55,6 +56,13 @@ class Warden
     protected $settings;
 
     /**
+     * An array of dependencies for collector classes
+     *
+     * @var Array
+     */
+    protected $dependencies;
+
+    /**
      * The start event used when warden starts
      *
      * @var \Warden\Events\StartEvent
@@ -76,6 +84,7 @@ class Warden
     public function __construct($dispatcher = NULL)
     {
         $this->dispatch = (!is_null($dispatcher) ? $dispatcher : new EventDispatcher);
+        $this->dependencies = array();
 
         $this->params = new CollectorParamBag;
         $this->parser = new Parser;
@@ -129,6 +138,23 @@ class Warden
     }
 
     /**
+     * Returns an array of dependencies for collector classes
+     *
+     * @param Array $dependencies
+     * @return Array
+     */
+    public function resolveDependencies(array $dependencies)
+    {
+        $resolved = array();
+
+        foreach ($dependencies as $dep) {
+            $resolved[] = $this->getDependency($dep);
+        }
+
+        return $resolved;
+    }
+
+    /**
      * Creates an instance of the collectors specified in settings
      * and runs their describe methods
      *
@@ -140,10 +166,13 @@ class Warden
         $descriptions = array();
 
         // Init each class, and gather their describe info
-        foreach ($collectors as $key => $class) {
+        foreach ($collectors as $key => $value) {
 
-            $rfl = new \ReflectionClass($class);
-            $ins = $rfl->newInstance();
+            $arguments = (isset($value['arguments']) ? $value['arguments'] : array());
+            $args = $this->resolveDependencies($arguments);
+
+            $rfl = new \ReflectionClass($value['class']);
+            $ins = $rfl->newInstanceArgs($args);
 
             $this->collectors[$key] = $ins;
 
@@ -224,6 +253,43 @@ class Warden
     public function getParams()
     {
         return $this->params;
+    }
+
+    /**
+     * Adds a dependency to the collection
+     *
+     * @param String $name
+     * @param Mixed $val
+     * @return Warden
+     */
+    public function addDependency($name, $val)
+    {
+        $this->dependencies[$name] = $val;
+        return $this;
+    }
+
+    /**
+     * Fetches a known dependency from the array
+     *
+     * @return Mixed
+     */
+    public function getDependency($name)
+    {
+        if (!array_key_exists($name, $this->dependencies)) {
+            throw new Exceptions\MissingDependencyException($name);
+        }
+
+        return $this->dependencies[$name];
+    }
+
+    /**
+     * Returns all dependencies
+     *
+     * @return Array
+     */
+    public function getDependencies()
+    {
+        return $this->dependencies;
     }
 
 } // END class Warden

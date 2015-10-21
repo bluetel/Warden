@@ -72,6 +72,45 @@ class CollectorParamBag
     }
 
     /**
+     * Sets a node value
+     *
+     * @param String $node
+     * @param String $key
+     * @param Mixed $value
+     * @return CollectorParamBag
+     */
+    public function setNodeInfo($node, $key, $value)
+    {
+        if (!array_key_exists($node, $this->data)) {
+            throw new Exceptions\InvalidCollectorNodeException($node);
+        }
+
+        $this->checkDataTypes($node, $key, $value);
+
+        $this->data[$node][$key] = $value;
+        return $this;
+    }
+
+    /**
+     * Checks that the type of value matches what the node expects
+     *
+     * @param String $node
+     * @param String $key
+     * @param Mixed $value
+     * @return void
+     */
+    public function checkDataTypes($node, $key, $value)
+    {
+        $type = gettype($value);
+        $allowed = $this->data[$node]['type'];
+        $keys = array('limit', 'value');
+
+        if ($type != $allowed && in_array($key, $keys)) {
+            throw new Exceptions\InvalidNodeDataTypeException($type, $allowed, $node);
+        }
+    }
+
+    /**
      * Returns the value type as set in the collector `describe` method
      *
      * @param String $key
@@ -136,8 +175,7 @@ class CollectorParamBag
      */
     public function setLimit($key, $value)
     {
-        $this->data[$key]['limit'] = $value;
-        return $this;
+        return $this->setNodeInfo($key, 'limit', $value);
     }
 
     /**
@@ -149,8 +187,7 @@ class CollectorParamBag
      */
     public function setExpression($key, $value)
     {
-        $this->data[$key]['expression'] = $value;
-        return $this;
+        return $this->setNodeInfo($key, 'expression', $value);
     }
 
     /**
@@ -162,8 +199,7 @@ class CollectorParamBag
      */
     public function setValue($key, $value)
     {
-        $this->data[$key]['value'] = $value;
-        return $this;
+        return $this->setNodeInfo($key, 'value', $value);
     }
 
     /**
@@ -174,30 +210,6 @@ class CollectorParamBag
     public function all()
     {
         return $this->data;
-    }
-
-    /**
-     * Sets the collector value
-     *
-     * @param String $key
-     * @param Mixed $value
-     * @return CollectorParamBag
-     */
-    public function __set($key, $value)
-    {
-        $this->data[$key] = array_merge($this->data[$key], ['value' => $value]);
-        return $this;
-    }
-
-    /**
-     * Returns the collector value
-     *
-     * @param String $key
-     * @return Mixed
-     */
-    public function __get($key)
-    {
-        return $this->data[$key]['value'];
     }
 
 } // END class CollectorParamBag
