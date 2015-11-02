@@ -9,6 +9,8 @@ use Warden\Events\StopEvent;
 use Warden\Collector\CollectorInterface;
 use Warden\Collector\CollectorParamBag;
 use Warden\Exceptions;
+use Warden\Governor\GovernorInterface;
+use Warden\Governor\GovernorDecorator;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Yaml\Parser;
 
@@ -47,6 +49,13 @@ class Warden
      * @var Array
      */
     protected $collectors;
+
+    /**
+     * An array of registered governors
+     *
+     * @var Array
+     */
+    protected $governors;
 
     /**
      * Raw settings from the YAML file
@@ -89,6 +98,7 @@ class Warden
         $this->params = new CollectorParamBag;
         $this->parser = new Parser;
         $this->collectors = array();
+        $this->governors = array();
     }
 
     /**
@@ -290,6 +300,35 @@ class Warden
     public function getDependencies()
     {
         return $this->dependencies;
+    }
+
+    /**
+     * Registers a governor class and creates its decorator
+     *
+     * @param \Warden\Governor\GovernorInterface $governor
+     * @return Warden
+     */
+    public function addGovernor(GovernorInterface $governor)
+    {
+        $governor->registerEvents($this->dispatch);
+        $decorator = new GovernorDecorator($this->dispatch, $governor->getService());
+
+        $this->governors[$governor->getAlias()] = $decorator;
+
+        return $this;
+    }
+
+    /**
+     * Returns a governor class by its alias
+     *
+     * @param String $alias
+     * @return \Warden\Governor\GovernorInterface
+     */
+    public function getGovernor($alias)
+    {
+        // TODO: check if its exists?
+
+        return $this->governors[$alias];
     }
 
 } // END class Warden

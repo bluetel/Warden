@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "10050dbae72b807fa49cdaf6d91b9d74",
+    "hash": "5bb73dd6b58a44b401d44ecd86739986",
     "content-hash": "d5056373d8ef765d6c68abd47e3be612",
     "packages": [
         {
@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "87a5db5ea887763fa3a31a5471b512ff1596d9b8"
+                "reference": "7e2f9c31645680026c2372edf66f863fc7757af5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/87a5db5ea887763fa3a31a5471b512ff1596d9b8",
-                "reference": "87a5db5ea887763fa3a31a5471b512ff1596d9b8",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/7e2f9c31645680026c2372edf66f863fc7757af5",
+                "reference": "7e2f9c31645680026c2372edf66f863fc7757af5",
                 "shasum": ""
             },
             "require": {
@@ -44,7 +44,10 @@
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\EventDispatcher\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -62,7 +65,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2015-10-11 09:39:48"
+            "time": "2015-10-30 20:10:21"
         },
         {
             "name": "symfony/expression-language",
@@ -70,12 +73,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/expression-language.git",
-                "reference": "2bf74c1b827c51207edf4885a4bc5743d66b4873"
+                "reference": "e255ca3e9be87d9d398148eb8fcde85112b774a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/expression-language/zipball/2bf74c1b827c51207edf4885a4bc5743d66b4873",
-                "reference": "2bf74c1b827c51207edf4885a4bc5743d66b4873",
+                "url": "https://api.github.com/repos/symfony/expression-language/zipball/e255ca3e9be87d9d398148eb8fcde85112b774a1",
+                "reference": "e255ca3e9be87d9d398148eb8fcde85112b774a1",
                 "shasum": ""
             },
             "require": {
@@ -90,7 +93,10 @@
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\ExpressionLanguage\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -108,7 +114,7 @@
             ],
             "description": "Symfony ExpressionLanguage Component",
             "homepage": "https://symfony.com",
-            "time": "2015-10-11 09:39:48"
+            "time": "2015-10-30 20:13:17"
         },
         {
             "name": "symfony/stopwatch",
@@ -116,12 +122,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
-                "reference": "f8ab957c17e4b85a73c4df03bdf94ee597f2bd55"
+                "reference": "9fa59908b0c5575980a1623723a5b5cb38e0a04a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/f8ab957c17e4b85a73c4df03bdf94ee597f2bd55",
-                "reference": "f8ab957c17e4b85a73c4df03bdf94ee597f2bd55",
+                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/9fa59908b0c5575980a1623723a5b5cb38e0a04a",
+                "reference": "9fa59908b0c5575980a1623723a5b5cb38e0a04a",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +142,10 @@
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Stopwatch\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -154,7 +163,7 @@
             ],
             "description": "Symfony Stopwatch Component",
             "homepage": "https://symfony.com",
-            "time": "2015-10-12 12:42:24"
+            "time": "2015-10-30 20:10:21"
         },
         {
             "name": "symfony/yaml",
@@ -162,12 +171,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "eca9019c88fbe250164affd107bc8057771f3f4d"
+                "reference": "e50a377ab3f8f17bd11c68c59f7b051bf8c3f956"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/eca9019c88fbe250164affd107bc8057771f3f4d",
-                "reference": "eca9019c88fbe250164affd107bc8057771f3f4d",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/e50a377ab3f8f17bd11c68c59f7b051bf8c3f956",
+                "reference": "e50a377ab3f8f17bd11c68c59f7b051bf8c3f956",
                 "shasum": ""
             },
             "require": {
@@ -182,7 +191,10 @@
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Yaml\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -200,7 +212,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-10-11 09:39:48"
+            "time": "2015-10-30 20:10:21"
         }
     ],
     "packages-dev": [
@@ -278,12 +290,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "1c3483678ab767c3e21d3a96d6dd1006b327d425"
+                "reference": "367a071758e771830439a18d312ac59490ef3cf5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/1c3483678ab767c3e21d3a96d6dd1006b327d425",
-                "reference": "1c3483678ab767c3e21d3a96d6dd1006b327d425",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/367a071758e771830439a18d312ac59490ef3cf5",
+                "reference": "367a071758e771830439a18d312ac59490ef3cf5",
                 "shasum": ""
             },
             "require": {
@@ -304,8 +316,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Doctrine\\Common\\Cache\\": "lib/"
+                "psr-4": {
+                    "Doctrine\\Common\\Cache\\": "lib/Doctrine/Common/Cache"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -340,7 +352,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-10-08 07:32:30"
+            "time": "2015-11-02 09:22:50"
         },
         {
             "name": "doctrine/collections",
@@ -414,12 +426,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "26727ba78de21a824dcbfa5a8ab52c21fe7d71d5"
+                "reference": "1fb4d85982a4c18bff80e05659b110312f416de7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/26727ba78de21a824dcbfa5a8ab52c21fe7d71d5",
-                "reference": "26727ba78de21a824dcbfa5a8ab52c21fe7d71d5",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/1fb4d85982a4c18bff80e05659b110312f416de7",
+                "reference": "1fb4d85982a4c18bff80e05659b110312f416de7",
                 "shasum": ""
             },
             "require": {
@@ -479,7 +491,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2015-04-15 22:02:48"
+            "time": "2015-10-30 18:44:37"
         },
         {
             "name": "doctrine/dbal",
@@ -1018,12 +1030,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "7e451255242ac0fc6cfd72815fbf5f71893e9ca4"
+                "reference": "c0747a0f02bf6130a08eff60487ba67464016bfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/7e451255242ac0fc6cfd72815fbf5f71893e9ca4",
-                "reference": "7e451255242ac0fc6cfd72815fbf5f71893e9ca4",
+                "url": "https://api.github.com/repos/symfony/config/zipball/c0747a0f02bf6130a08eff60487ba67464016bfc",
+                "reference": "c0747a0f02bf6130a08eff60487ba67464016bfc",
                 "shasum": ""
             },
             "require": {
@@ -1039,7 +1051,10 @@
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Config\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1057,7 +1072,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2015-10-11 09:14:55"
+            "time": "2015-10-30 23:35:59"
         },
         {
             "name": "symfony/console",
@@ -1065,16 +1080,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "89a795226477f66745e8ea10415e769304114920"
+                "reference": "2c18b786853b2c162f43692dcd87bdec67091223"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/89a795226477f66745e8ea10415e769304114920",
-                "reference": "89a795226477f66745e8ea10415e769304114920",
+                "url": "https://api.github.com/repos/symfony/console/zipball/2c18b786853b2c162f43692dcd87bdec67091223",
+                "reference": "2c18b786853b2c162f43692dcd87bdec67091223",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9"
+                "php": ">=5.3.9",
+                "symfony/polyfill-mbstring": "~1.0"
             },
             "require-dev": {
                 "psr/log": "~1.0",
@@ -1095,7 +1111,10 @@
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Console\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1113,7 +1132,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2015-10-12 10:31:17"
+            "time": "2015-10-30 20:15:42"
         },
         {
             "name": "symfony/filesystem",
@@ -1121,12 +1140,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "d1a7ca3ed5c2b4d176436bb72e229c4da25d649e"
+                "reference": "61087e5e80b081a4140c29497152bbc15a697c72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/d1a7ca3ed5c2b4d176436bb72e229c4da25d649e",
-                "reference": "d1a7ca3ed5c2b4d176436bb72e229c4da25d649e",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/61087e5e80b081a4140c29497152bbc15a697c72",
+                "reference": "61087e5e80b081a4140c29497152bbc15a697c72",
                 "shasum": ""
             },
             "require": {
@@ -1141,7 +1160,10 @@
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Filesystem\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1159,7 +1181,63 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2015-10-18 20:24:22"
+            "time": "2015-10-30 23:35:59"
+        },
+        {
+            "name": "symfony/polyfill-mbstring",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-mbstring.git",
+                "reference": "82159e61debcd09790b20154b350b1c083029aa6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/82159e61debcd09790b20154b350b1c083029aa6",
+                "reference": "82159e61debcd09790b20154b350b1c083029aa6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for the Mbstring extension",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "mbstring",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2015-10-27 22:54:43"
         }
     ],
     "aliases": [],

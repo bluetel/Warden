@@ -1,0 +1,10 @@
+warden:
+    collectors:
+        stopwatch:
+            class: Warden\Collector\Stopwatch\StopwatchCollector
+    settings:
+        request_time:
+            limit: 1
+            expression: 'value > limit'
+        request_memory:
+            limit: 2000000000
