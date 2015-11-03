@@ -2,6 +2,7 @@
 
 namespace Warden;
 
+use Warden\WardenEventHandler;
 use Warden\WardenEvents;
 use Warden\Analyser;
 use Warden\Events\StartEvent;
@@ -28,6 +29,13 @@ class Warden
      * @var \Symfony\Component\EventDispatcher\EventDispatcher
      */
     protected $dispatch;
+
+    /**
+     * Instance of the warden event handler class
+     *
+     * @var \Warden\WardenEventHandler
+     */
+    protected $handler;
 
     /**
      * The finished param bag
@@ -97,6 +105,7 @@ class Warden
 
         $this->params = new CollectorParamBag;
         $this->parser = new Parser;
+        $this->handler = new WardenEventHandler($this->dispatch, $this);
         $this->collectors = array();
         $this->governors = array();
     }
@@ -310,10 +319,13 @@ class Warden
      */
     public function addGovernor(GovernorInterface $governor)
     {
-        $governor->registerEvents($this->dispatch);
-        $decorator = new GovernorDecorator($this->dispatch, $governor->getService());
+        $decorator = new GovernorDecorator(
+            $this->dispatch,
+            $governor->getService(),
+            $governor->getAlias()
+        );
 
-        $this->governors[$governor->getAlias()] = $decorator;
+        $this->governors[$governor->getAlias()] = ['decorator' => $decorator, 'handler' => $governor];
 
         return $this;
     }
@@ -322,13 +334,27 @@ class Warden
      * Returns a governor class by its alias
      *
      * @param String $alias
+     * @param String $key
      * @return \Warden\Governor\GovernorInterface
      */
-    public function getGovernor($alias)
+    public function getGovernor($alias, $key = 'decorator')
     {
-        // TODO: check if its exists?
+        if (!array_key_exists($alias, $this->governors)) {
+            throw new Exceptions\GovernorNotFoundException($alias);
+        }
 
-        return $this->governors[$alias];
+        return $this->governors[$alias][$key];
+    }
+
+    /**
+     * Returns the Handler class for a named governor
+     *
+     * @param String $alias
+     * @return GovernorInterface
+     */
+    public function getGovernorHandler($alias)
+    {
+        return $this->getGovernor($alias, 'handler');
     }
 
 } // END class Warden

@@ -3,6 +3,8 @@
 namespace Warden\Tests\Governor\Governors;
 
 use Warden\Governor\GovernorInterface;
+use Warden\Events\BeforeMethodEvent;
+use Warden\Events\AfterMethodEvent;
 use Warden\Tests\Governor\Governors\TestService;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
@@ -36,12 +38,33 @@ class TestGovernor implements GovernorInterface
     }
 
     /**
-     * Registers the events against the dispatcher
+     * Handler for a method call
      *
-     * @param \Symfony\Component\EventDispatcher\EventDispatcher $dispatch
+     * @param \Warden\Events\BeforeMethodEvent $event
      * @return void
      */
-    public function registerEvents(EventDispatcher $dispatch)
+    public function beforeMethodFire(BeforeMethodEvent $event)
+    {
+    }
+
+    /**
+     * Handler for after a method is called
+     *
+     * @param \Warden\Events\AfterMethodEvent $event
+     * @return void
+     */
+    public function afterMethodFire(AfterMethodEvent $event)
+    {
+    }
+
+    /**
+     * Handler for when a property is requested
+     *
+     * @param String $name
+     * @param Mixed $value
+     * @return void
+     */
+    public function onPropertyAccess($name, $value)
     {
     }
 

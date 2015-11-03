@@ -27,4 +27,18 @@ class GovernorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('test', $decorator->getAValue());
     }
 
+    /**
+     * Test that Warden throws an exception when we access
+     * a class that isnt registered
+     *
+     * @return void
+     */
+    public function test_access_to_unknown_governor()
+    {
+        $this->setExpectedException('Warden\Exceptions\GovernorNotFoundException');
+
+        $warden = new Warden;
+        $warden->getGovernor('test');
+    }
+
 } // END class GovernorTest extends \PHPUnit_Framework_TestCase

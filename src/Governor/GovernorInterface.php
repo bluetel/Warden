@@ -2,7 +2,8 @@
 
 namespace Warden\Governor;
 
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Warden\Events\BeforeMethodEvent;
+use Warden\Events\AfterMethodEvent;
 
 /**
  * The govenor interface, allows the creation of custom collection tools
@@ -28,10 +29,23 @@ Interface GovernorInterface
     public function getAlias();
 
     /**
-     * Register events on the dispatcher
+     * Handler for when a method is called
      *
-     * @param \Symfony\Component\EventDispatcher\EventDispatcher $dispatch
      * @return void
      */
-    public function registerEvents(EventDispatcher $dispatch);
+    public function beforeMethodFire(BeforeMethodEvent $event);
+
+    /**
+     * Handler for after a method is called
+     *
+     * @return void
+     */
+    public function afterMethodFire(AfterMethodEvent $event);
+
+    /**
+     * Handler for when a property is requested
+     *
+     * @return void
+     */
+    public function onPropertyAccess($name, $value);
 }
