@@ -225,7 +225,6 @@ class Warden
     public function initEvents()
     {
         $this->start = new StartEvent;
-        $this->stop = new StopEvent($this->params);
     }
 
     /**
@@ -247,8 +246,10 @@ class Warden
      */
     public function stop()
     {
-        $this->stop = $this->dispatch->dispatch(WardenEvents::WARDEN_END, $this->stop);
-        $this->params = $this->stop->params;
+        $this->stop = new StopEvent($this->params);
+
+        $stopEvent = $this->dispatch->dispatch(WardenEvents::WARDEN_END, $this->stop);
+        $this->params = $stopEvent->params;
 
         // Send the results to the analyser
         $this->analyseResults();

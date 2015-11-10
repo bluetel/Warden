@@ -62,4 +62,23 @@ class GovernorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(52, $params->getValue('governor_test'));
     }
 
+    /**
+     * Test that the governor class triggers exceptions
+     *
+     * @return void
+     */
+    public function test_governor_triggers_exceptions()
+    {
+        $this->setExpectedException('Warden\Exceptions\LimitExceededException');
+
+        $warden = new Warden;
+        $warden->addGovernor(new TestGovernor);
+        $warden->start();
+
+        $d = $warden->getGovernor('testGov');
+        $d->getAValue();
+
+        $warden->stop();
+    }
+
 } // END class GovernorTest extends \PHPUnit_Framework_TestCase
