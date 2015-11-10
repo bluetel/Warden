@@ -2,6 +2,7 @@
 
 namespace Warden;
 
+use Warden\WardenEventHandler;
 use Warden\WardenEvents;
 use Warden\Analyser;
 use Warden\Events\StartEvent;
@@ -9,6 +10,8 @@ use Warden\Events\StopEvent;
 use Warden\Collector\CollectorInterface;
 use Warden\Collector\CollectorParamBag;
 use Warden\Exceptions;
+use Warden\Governor\GovernorInterface;
+use Warden\Governor\GovernorDecorator;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Yaml\Parser;
 
@@ -26,6 +29,13 @@ class Warden
      * @var \Symfony\Component\EventDispatcher\EventDispatcher
      */
     protected $dispatch;
+
+    /**
+     * Instance of the warden event handler class
+     *
+     * @var \Warden\WardenEventHandler
+     */
+    protected $handler;
 
     /**
      * The finished param bag
@@ -47,6 +57,13 @@ class Warden
      * @var Array
      */
     protected $collectors;
+
+    /**
+     * An array of registered governors
+     *
+     * @var Array
+     */
+    protected $governors;
 
     /**
      * Raw settings from the YAML file
@@ -88,7 +105,9 @@ class Warden
 
         $this->params = new CollectorParamBag;
         $this->parser = new Parser;
+        $this->handler = new WardenEventHandler($this->dispatch, $this);
         $this->collectors = array();
+        $this->governors = array();
     }
 
     /**
@@ -206,7 +225,6 @@ class Warden
     public function initEvents()
     {
         $this->start = new StartEvent;
-        $this->stop = new StopEvent($this->params);
     }
 
     /**
@@ -217,6 +235,7 @@ class Warden
     public function start()
     {
         $this->dispatch->dispatch(WardenEvents::WARDEN_START, $this->start);
+        $this->handler->register();
     }
 
     /**
@@ -227,8 +246,10 @@ class Warden
      */
     public function stop()
     {
-        $this->stop = $this->dispatch->dispatch(WardenEvents::WARDEN_END, $this->stop);
-        $this->params = $this->stop->params;
+        $this->stop = new StopEvent($this->params);
+
+        $stopEvent = $this->dispatch->dispatch(WardenEvents::WARDEN_END, $this->stop);
+        $this->params = $stopEvent->params;
 
         // Send the results to the analyser
         $this->analyseResults();
@@ -290,6 +311,53 @@ class Warden
     public function getDependencies()
     {
         return $this->dependencies;
+    }
+
+    /**
+     * Registers a governor class and creates its decorator
+     *
+     * @param \Warden\Governor\GovernorInterface $governor
+     * @return Warden
+     */
+    public function addGovernor(GovernorInterface $governor)
+    {
+        $decorator = new GovernorDecorator(
+            $this->dispatch,
+            $this,
+            $governor->getService(),
+            $governor->getAlias()
+        );
+
+        $this->governors[$governor->getAlias()] = ['decorator' => $decorator, 'handler' => $governor];
+
+        return $this;
+    }
+
+    /**
+     * Returns a governor class by its alias
+     *
+     * @param String $alias
+     * @param String $key
+     * @return \Warden\Governor\GovernorInterface
+     */
+    public function getGovernor($alias, $key = 'decorator')
+    {
+        if (!array_key_exists($alias, $this->governors)) {
+            throw new Exceptions\GovernorNotFoundException($alias);
+        }
+
+        return $this->governors[$alias][$key];
+    }
+
+    /**
+     * Returns the Handler class for a named governor
+     *
+     * @param String $alias
+     * @return GovernorInterface
+     */
+    public function getGovernorHandler($alias)
+    {
+        return $this->getGovernor($alias, 'handler');
     }
 
 } // END class Warden

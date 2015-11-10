@@ -24,4 +24,18 @@ final class WardenEvents
      */
     const WARDEN_END = 'warden.end';
 
+    /**
+     * The event name for when a governor method is called
+     *
+     * @var String
+     */
+    const BEFORE_METHOD = 'before.method';
+
+    /**
+     * The event name for after governor method execution
+     *
+     * @var String
+     */
+    const AFTER_METHOD = 'after.method'; 
+
 } // END class WardenEvents
