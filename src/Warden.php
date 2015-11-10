@@ -236,6 +236,7 @@ class Warden
     public function start()
     {
         $this->dispatch->dispatch(WardenEvents::WARDEN_START, $this->start);
+        $this->handler->register();
     }
 
     /**
@@ -321,6 +322,7 @@ class Warden
     {
         $decorator = new GovernorDecorator(
             $this->dispatch,
+            $this,
             $governor->getService(),
             $governor->getAlias()
         );

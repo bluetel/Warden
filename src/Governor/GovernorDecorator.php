@@ -24,6 +24,13 @@ class GovernorDecorator
     protected $dispatch;
 
     /**
+     * The warden instance
+     *
+     * @var \Warden\Warden
+     */
+    protected $warden;
+
+    /**
      * The service class that this is decorating
      *
      * @var Object
@@ -41,12 +48,14 @@ class GovernorDecorator
      * Set up class dependencies
      *
      * @param \Symfony\Component\EventDispatcher\EventDispatcher $dispatch
+     * @param \Warden\Warden $warden
      * @param Object $service
      * @param String $alias
      */
-    public function __construct(EventDispatcher $dispatch, $service, $alias)
+    public function __construct(EventDispatcher $dispatch, $warden, $service, $alias)
     {
         $this->dispatch = $dispatch;
+        $this->warden = $warden;
         $this->service = $service;
         $this->alias = $alias;
     }
@@ -60,7 +69,7 @@ class GovernorDecorator
      */
     public function __call($method, array $params = array())
     {
-        $before = new BeforeMethodEvent($this->alias, $method);
+        $before = new BeforeMethodEvent($this->alias, $method, $this->warden->getParams());
 
         $this->dispatch->dispatch(
             WardenEvents::BEFORE_METHOD,
@@ -69,7 +78,7 @@ class GovernorDecorator
 
         $returnValue = call_user_func_array([$this->service, $method], $params);
 
-        $after = new AfterMethodEvent($this->alias, $method, $returnValue);
+        $after = new AfterMethodEvent($this->alias, $method, $returnValue, $this->warden->getParams());
 
         $this->dispatch->dispatch(
             WardenEvents::AFTER_METHOD,

@@ -41,11 +41,4 @@ Interface GovernorInterface
      * @return void
      */
     public function afterMethodFire(AfterMethodEvent $event);
-
-    /**
-     * Handler for when a property is requested
-     *
-     * @return void
-     */
-    public function onPropertyAccess($name, $value);
 }

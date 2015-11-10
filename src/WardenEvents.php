@@ -36,6 +36,6 @@ final class WardenEvents
      *
      * @var String
      */
-    const AFTER_METHOD = 'after.method';
+    const AFTER_METHOD = 'after.method'; 
 
 } // END class WardenEvents

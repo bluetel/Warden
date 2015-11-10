@@ -2,6 +2,7 @@
 
 namespace Warden\Tests\Governor\Governors;
 
+use Warden\Collector\CollectorParamBag;
 use Warden\Governor\GovernorInterface;
 use Warden\Events\BeforeMethodEvent;
 use Warden\Events\AfterMethodEvent;
@@ -45,6 +46,9 @@ class TestGovernor implements GovernorInterface
      */
     public function beforeMethodFire(BeforeMethodEvent $event)
     {
+        $event->params->add('governor_test', [
+            'limit'     => 50
+        ]);
     }
 
     /**
@@ -55,17 +59,7 @@ class TestGovernor implements GovernorInterface
      */
     public function afterMethodFire(AfterMethodEvent $event)
     {
-    }
-
-    /**
-     * Handler for when a property is requested
-     *
-     * @param String $name
-     * @param Mixed $value
-     * @return void
-     */
-    public function onPropertyAccess($name, $value)
-    {
+        $event->params->setValue('governor_test', 52);
     }
 
 } // END class TestGovernor implements GovernorInterface

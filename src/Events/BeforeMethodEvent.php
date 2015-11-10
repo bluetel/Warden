@@ -28,15 +28,23 @@ class BeforeMethodEvent extends Event
     public $method;
 
     /**
+     * The param bag instance
+     *
+     * @var Warden\Collector\CollectorParamBag
+     */
+    public $params;
+
+    /**
      * Set up class dependencies
      *
      * @param String $alias
      * @param String $method
      */
-    public function __construct($alias, $method)
+    public function __construct($alias, $method, $paramBag)
     {
         $this->alias = $alias;
         $this->method = $method;
+        $this->params = $paramBag;
     }
 
 } // END class BeforeMethodEvent extends Event

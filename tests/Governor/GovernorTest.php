@@ -21,6 +21,7 @@ class GovernorTest extends \PHPUnit_Framework_TestCase
     {
         $warden = new Warden;
         $warden->addGovernor(new TestGovernor);
+        $warden->start();
 
         $decorator = $warden->getGovernor('testGov');
 
@@ -39,6 +40,26 @@ class GovernorTest extends \PHPUnit_Framework_TestCase
 
         $warden = new Warden;
         $warden->getGovernor('test');
+    }
+
+    /**
+     * Test that the governor classes can access the param bag
+     *
+     * @return void
+     */
+    public function test_governor_using_parambag()
+    {
+        $warden = new Warden;
+        $warden->addGovernor(new TestGovernor);
+        $warden->start();
+
+        $d = $warden->getGovernor('testGov');
+
+        $d->getAValue();
+
+        $params = $warden->getParams();
+
+        $this->assertEquals(52, $params->getValue('governor_test'));
     }
 
 } // END class GovernorTest extends \PHPUnit_Framework_TestCase
